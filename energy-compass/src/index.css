@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 50% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 50% 9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 50% 9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 50% 7%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 43 100% 50%;
+    --accent-foreground: 222 50% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 160 84% 39%;
+    --violet: 271 91% 65%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 187 100% 50%;
+
+    --radius: 1rem;
+
+    /* Brand */
+    --energy: 187 100% 50%;       /* #00f5ff */
+    --solar: 41 100% 50%;         /* #ffb700 */
+    --net: 271 91% 65%;           /* #a855f7 */
+    --surplus: 160 84% 39%;       /* #10b981 */
+    --bg-deep: 225 50% 8%;        /* #0a0f1e */
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body, #root { height: 100%; }
+  body {
+    @apply text-foreground;
+    background: #0a0f1e;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl;
+  }
+  .glass-flat {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  .text-energy { color: #00f5ff; }
+  .text-solar  { color: #ffb700; }
+  .text-net    { color: #a855f7; }
+  .text-surplus{ color: #10b981; }
+  .bg-energy   { background-color: #00f5ff; }
+  .bg-solar    { background-color: #ffb700; }
+  .border-energy { border-color: #00f5ff; }
+  .border-solar  { border-color: #ffb700; }
+  .border-net    { border-color: #a855f7; }
+  .border-surplus{ border-color: #10b981; }
+}
+
+/* Star-field */
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(2px 2px at 20px 30px, #ffffff55, transparent),
+    radial-gradient(1px 1px at 40px 70px, #ffffff44, transparent),
+    radial-gradient(1px 1px at 90px 110px, #ffffff66, transparent),
+    radial-gradient(1.5px 1.5px at 160px 50px, #ffffff33, transparent),
+    radial-gradient(1px 1px at 200px 200px, #ffffff55, transparent),
+    radial-gradient(1px 1px at 280px 90px, #ffffff44, transparent),
+    radial-gradient(2px 2px at 350px 250px, #ffffff44, transparent),
+    radial-gradient(1px 1px at 420px 130px, #ffffff66, transparent),
+    radial-gradient(1px 1px at 500px 300px, #ffffff33, transparent),
+    radial-gradient(1.5px 1.5px at 580px 60px, #ffffff55, transparent);
+  background-size: 600px 400px;
+  animation: drift 200s linear infinite;
+  opacity: 0.5;
+}
+@keyframes drift {
+  from { background-position: 0 0; }
+  to   { background-position: 600px 400px; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(0,245,255,0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 24px rgba(0,245,255,0.7)); transform: scale(1.05); }
+}
+.pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 20s linear infinite; transform-origin: center; }
+
+/* Mapbox popup dark */
+.mapboxgl-popup-content {
+  background: rgba(10,15,30,0.92) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(12px);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  padding: 10px 12px !important;
+}
+.mapboxgl-popup-tip { border-top-color: rgba(10,15,30,0.92) !important; border-bottom-color: rgba(10,15,30,0.92) !important; }
+.mapboxgl-popup-close-button { color: #e2e8f0 !important; }
+.mapboxgl-ctrl-attrib, .mapboxgl-ctrl-logo { opacity: 0.4; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
